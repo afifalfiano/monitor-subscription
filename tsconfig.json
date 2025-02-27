@@ -11,6 +11,11 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
+    "paths": {
+      "monitor-subscription": [
+        "./dist/monitor-subscription"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
