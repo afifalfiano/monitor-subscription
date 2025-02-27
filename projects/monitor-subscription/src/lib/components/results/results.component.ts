@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { LoggerService } from '../../services/logger.service';
 
@@ -28,5 +28,22 @@ export class ResultsComponent {
         }
       }
     })
+  }
+
+  doResetLog(): void {
+    this.streams = [];
+  }
+
+  getColorComopnent(item: any): string {
+    switch (item?.component) {
+      case '_ComponentAComponent':
+        return 'green';
+      case '_ComponentBComponent':
+        return 'blue';
+      case '_ComponentCComponent':
+        return 'red';
+      default:
+        return '';
+    }
   }
 }

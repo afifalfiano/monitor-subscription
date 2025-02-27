@@ -24,4 +24,8 @@ export class AppComponent {
     this.destroyService.unsubscribe('_ComponentAComponent');
   }
 
+  onSubscribeAll(): void {
+    this.destroyService.unsubscribeAll();
+  }
+
 }

@@ -1,5 +1,5 @@
 <div style="padding: 20px">
-  <ul style="line-height: 32px;">
+  <ul style="line-height: 32px;padding-left: 0; list-style: none;">
     <li>
       <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>
     </li>
@@ -22,6 +22,7 @@
       <button type="button" (click)="onSubscribeC()">Unsubscribe C</button>      
     </li>
   </ul>
+  <button type="button" (click)="onSubscribeAll()">Unsubscribe All</button>
   <router-outlet />
   <app-results/>
 </div>
