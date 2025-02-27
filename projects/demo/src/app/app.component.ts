@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ResultsComponent } from 'monitor-subscription';
+import { DestroySubscriptionService, ResultsComponent } from 'monitor-subscription';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,5 +10,18 @@ import { ResultsComponent } from 'monitor-subscription';
 })
 export class AppComponent {
   title = 'demo';
+  destroyService = inject(DestroySubscriptionService);
+
+  onSubscribeC(): void {
+    this.destroyService.unsubscribe("_ComponentCComponent");
+  }
+
+  onSubscribeB(): void {
+    this.destroyService.unsubscribe("_ComponentBComponent");
+  }
+
+  onSubscribeA(): void {
+    this.destroyService.unsubscribe('_ComponentAComponent');
+  }
 
 }

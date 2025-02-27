@@ -23,7 +23,7 @@ export class ResultsComponent {
       next: (data: any) => {
         if (data) {
           this.streams.push(data);
-          console.log(this.streams);
+          // console.log(this.streams);
           
         }
       }

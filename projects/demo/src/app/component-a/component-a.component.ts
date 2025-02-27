@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { activeSubs, LoggerService } from 'monitor-subscription';
-import { interval, map, of, Subject } from 'rxjs';
+import { activeSubs, DestroySubscriptionService, LoggerService } from 'monitor-subscription';
+import { interval, map, of, Subject, takeUntil } from 'rxjs';
 
 // @LogObservables()
 @Component({
@@ -18,7 +18,9 @@ export class ComponentAComponent implements OnInit, OnDestroy {
   public timer$ = interval(1000); // Infinite Observable
   public manual$ = new Subject<string>(); // Manually controlled Observable
   loggerService = inject(LoggerService);
+  destroyService = inject(DestroySubscriptionService);
   ngOnInit(): void {
+    const name = this.constructor.name;
     interval(1000).pipe(
       map(item => {
         return [
@@ -30,6 +32,7 @@ export class ComponentAComponent implements OnInit, OnDestroy {
           }
         ]
       }),
+      takeUntil(this.destroyService.getDestroy$(name)),
       activeSubs(this.constructor.name, this.loggerService)
     ).subscribe({
       next: (data) => {

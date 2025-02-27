@@ -1,9 +1,26 @@
 <div style="padding: 20px">
-  <ul>
-    <li [routerLink]="['/']" routerLinkActive="router-link-active" >Home</li>
-    <li [routerLink]="['/component-a']" routerLinkActive="router-link-active" >Component A</li>
-    <li [routerLink]="['/component-b']" routerLinkActive="router-link-active" >Component B</li>
-    <li [routerLink]="['/component-c']" routerLinkActive="router-link-active" >Component C</li>
+  <ul style="line-height: 32px;">
+    <li>
+      <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>
+    </li>
+    <li>
+      <button type="button" [routerLink]="['/component-a']" routerLinkActive="router-link-active" >
+        Component A
+      </button> &nbsp;
+      <button type="button" (click)="onSubscribeA()">Unsubscribe A</button>      
+    </li>
+    <li>
+      <button type="button" [routerLink]="['/component-b']" routerLinkActive="router-link-active" >
+        Component B
+      </button> &nbsp;
+      <button type="button" (click)="onSubscribeB()">Unsubscribe B</button>      
+    </li>
+    <li>
+      <button type="button" [routerLink]="['/component-c']" routerLinkActive="router-link-active" >
+        Component C
+      </button> &nbsp;
+      <button type="button" (click)="onSubscribeC()">Unsubscribe C</button>      
+    </li>
   </ul>
   <router-outlet />
   <app-results/>
