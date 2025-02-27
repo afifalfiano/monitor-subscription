@@ -1,32 +1,14 @@
-import { JsonPipe } from '@angular/common';
-import { Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { LoggerService } from 'monitor-subscription';
-
+import { ResultsComponent } from 'monitor-subscription';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, JsonPipe],
-  providers: [LoggerService],
+  imports: [RouterOutlet, RouterLink, ResultsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'demo';
-  logger = inject(LoggerService);
 
-  streams: any[] = [];
-
-  ngOnInit(): void {
-    this.logger.log('use library');
-    // get this issue in here, can't auto subscribe
-    this.logger.getStore().subscribe({
-      next: (data: any) => {
-        if (data) {
-          this.streams.push(data);
-          console.log(this.streams, 'streams')
-        }
-      }
-    })
-  }
 }

@@ -5,14 +5,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoggerService {
-  data = new BehaviorSubject('init');
+  data = new BehaviorSubject(null);
 
-  constructor() {
-    this.data.subscribe({
-      next: data => {
-        console.log(data);
-      }
-    })
+  integrated(): void {
+    console.log('Successfully Integrated Monitor Subscription...')
   }
 
   log(message: string): void {

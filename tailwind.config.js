@@ -1,11 +1,12 @@
 module.exports = {
   content: [
-    "./projects/demo/src/**/*.{html,ts}",
-    "./projects/monitor-subscription/src/**/*.{html,ts}",
+     "./src/**/*.{html,ts}",
+     "./projects/**/*.{html,ts}"
   ],
-  corePlugins: {
-    preflight: false,
-  },
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
   theme: {
     screens: {
       'sm': '640px',

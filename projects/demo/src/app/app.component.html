@@ -1,7 +1,10 @@
-<p [routerLink]="['/']" routerLinkActive="router-link-active" >Home</p>
-<router-outlet />
-<div style="max-height: 500px; height: 500px; overflow: scroll;">
-@for (item of streams; track $index) {
-  <div>{{item | json}}</div>
-}
+<div style="padding: 20px">
+  <ul>
+    <li [routerLink]="['/']" routerLinkActive="router-link-active" >Home</li>
+    <li [routerLink]="['/component-a']" routerLinkActive="router-link-active" >Component A</li>
+    <li [routerLink]="['/component-b']" routerLinkActive="router-link-active" >Component B</li>
+    <li [routerLink]="['/component-c']" routerLinkActive="router-link-active" >Component C</li>
+  </ul>
+  <router-outlet />
+  <app-results/>
 </div>

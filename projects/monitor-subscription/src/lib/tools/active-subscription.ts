@@ -4,11 +4,14 @@ import { Injector } from "@angular/core";
 
 // const injector = Injector.create({ providers: [LoggerService] });
 
-export function activeSubs<T>(context: any) {
-  const componentName = context.constructor.name;
+export function activeSubs<T>(componentName: string, loggerService: LoggerService) {
+  // const componentName = context.constructor.name;
   // let loggerService = injector.get(LoggerService)
-  let loggerService = new LoggerService();
+  // if (context.hasOwnProperty('loggerService')) {
+  //   loggerService = context?.loggerService;
+  // }
   return (source: Observable<T>): Observable<T> => {
+    let count = 0;
     return new Observable<T>((subscriber) => {
       source.subscribe({
         next: (value) => {
@@ -16,7 +19,8 @@ export function activeSubs<T>(context: any) {
             component: componentName,
             info: {
               info: 'Observable next.',
-              value: value
+              value: value,
+              count: count++
             }
           };
           subscriber.next(value);
@@ -27,7 +31,8 @@ export function activeSubs<T>(context: any) {
             component: componentName,
             value: {
               info: 'Observable error.',
-              value: err
+              value: err,
+              count: count++
             }
           };
           loggerService.store(monitor)
@@ -38,7 +43,8 @@ export function activeSubs<T>(context: any) {
             component: componentName,
             info: {
               info: 'Observable completed.',
-              value: null
+              value: null,
+              count: count++
             }
           };
           loggerService.store(monitor)

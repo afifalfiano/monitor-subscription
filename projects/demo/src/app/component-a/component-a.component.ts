@@ -17,7 +17,7 @@ export class ComponentAComponent implements OnInit, OnDestroy {
   public number$ = of(123); // Observable that completes immediately
   public timer$ = interval(1000); // Infinite Observable
   public manual$ = new Subject<string>(); // Manually controlled Observable
-
+  loggerService = inject(LoggerService);
   ngOnInit(): void {
     interval(1000).pipe(
       map(item => {
@@ -30,7 +30,7 @@ export class ComponentAComponent implements OnInit, OnDestroy {
           }
         ]
       }),
-      activeSubs(this)
+      activeSubs(this.constructor.name, this.loggerService)
     ).subscribe({
       next: (data) => {
         // console.log(data, this.constructor.name);

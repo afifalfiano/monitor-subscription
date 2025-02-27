@@ -11,6 +11,7 @@ import { interval, map, Subject } from 'rxjs';
 })
 export class ComponentCComponent implements OnInit, OnDestroy {
 $data1 = new Subject();
+loggerService = inject(LoggerService)
   ngOnInit(): void {
     interval(1000).pipe(
       map(item => {
@@ -19,7 +20,7 @@ $data1 = new Subject();
           email: 'paijo@yopmail.com'
         }
       }),
-      activeSubs(this)
+      activeSubs(this.constructor.name, this.loggerService)
     ).subscribe({
       next: (data) => {
         // console.log(data, this.constructor.name);
