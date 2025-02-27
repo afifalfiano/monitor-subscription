@@ -1,10 +1,13 @@
 import { Observable } from "rxjs";
 import { LoggerService } from "../services/logger.service";
+import { Injector } from "@angular/core";
+
+// const injector = Injector.create({ providers: [LoggerService] });
 
 export function activeSubs<T>(context: any) {
-  const loggerService = new LoggerService();
-  console.log(loggerService)
   const componentName = context.constructor.name;
+  // let loggerService = injector.get(LoggerService)
+  let loggerService = new LoggerService();
   return (source: Observable<T>): Observable<T> => {
     return new Observable<T>((subscriber) => {
       source.subscribe({

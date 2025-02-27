@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
-  data = new BehaviorSubject('test');
-  // todo:
-  // think how we can get subscription value form the instance component without declare services logger on that component
-  // the purpose is to emit or listen from subscription
+  data = new BehaviorSubject('init');
+
+  constructor() {
+    this.data.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    })
+  }
 
   log(message: string): void {
     console.log(`LoggerService: ${message}`);

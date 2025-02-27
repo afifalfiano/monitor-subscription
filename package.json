@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:demo": "ng serve demo",
+    "build:ms:watch": "ng build monitor-subscription --watch",
+    "build:ms": "ng build monitor-subscription",
+    "pack:ms": "cd dist/monitor-subscription && npm pack",
+    "publish:ms": "npm run build:ms && npm run pack:ms"
   },
   "private": true,
   "dependencies": {
@@ -18,7 +23,10 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@tailwindcss/postcss": "^4.0.9",
+    "postcss": "^8.5.3",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.0.9",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },

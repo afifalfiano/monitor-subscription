@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { LoggerService } from 'monitor-subscription';
 
@@ -9,9 +9,9 @@ import { LoggerService } from 'monitor-subscription';
   imports: [RouterOutlet, RouterLink, JsonPipe],
   providers: [LoggerService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   title = 'demo';
   logger = inject(LoggerService);
 
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.logger.log('use library');
+    // get this issue in here, can't auto subscribe
     this.logger.getStore().subscribe({
       next: (data: any) => {
         if (data) {
