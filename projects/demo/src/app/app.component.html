@@ -1,7 +1,7 @@
 <div style="padding: 20px">
   <ul style="line-height: 32px;padding-left: 0; list-style: none;">
     <li>
-      <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>
+      <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>&nbsp;
     </li>
     <li>
       <button type="button" [routerLink]="['/component-a']" routerLinkActive="router-link-active" >
@@ -20,6 +20,12 @@
         Component C
       </button> &nbsp;
       <button type="button" (click)="onSubscribeC()">Unsubscribe C</button>      
+    </li>
+    <li>
+      <button type="button" [routerLink]="['/component-worst-case']" routerLinkActive="router-link-active" >
+        Component Worst Case
+      </button> &nbsp;
+      <button type="button" (click)="onSubscribeWorstCase()">Unsubscribe Worst Case</button>      
     </li>
   </ul>
   <button type="button" (click)="onSubscribeAll()">Unsubscribe All</button>

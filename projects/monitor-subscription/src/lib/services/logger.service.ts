@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoggerService {
-  data = new BehaviorSubject(null);
+  private readonly data = new BehaviorSubject(null);
 
   integrated(): void {
     console.log('Successfully Integrated Monitor Subscription...')

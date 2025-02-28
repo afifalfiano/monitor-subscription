@@ -17,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'component-c',
     loadComponent: () => import('./component-c/component-c.component').then((c) => c.ComponentCComponent)
+  },
+  {
+    path: 'component-worst-case',
+    loadComponent: () => import('./worst-case/worst-case.component').then((c) => c.WorstCaseComponent)
   }
 ];
