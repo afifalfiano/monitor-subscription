@@ -1,5 +1,5 @@
-import { JsonPipe, NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { LoggerService } from '../../services/logger.service';
 
 @Component({
@@ -10,8 +10,12 @@ import { LoggerService } from '../../services/logger.service';
   styleUrl: './results.component.scss'
 })
 export class ResultsComponent {
-  logger = inject(LoggerService);
   streams: any[] = [];
+  colorMap = new Map<string, string>(); // Store colors for each component
+
+  constructor(
+    private readonly logger: LoggerService
+  ) {}
 
   ngOnInit(): void {
     this.logger.integrated();
@@ -34,16 +38,21 @@ export class ResultsComponent {
     this.streams = [];
   }
 
+
   getColorComopnent(item: any): string {
-    switch (item?.component) {
-      case '_ComponentAComponent':
-        return 'green';
-      case '_ComponentBComponent':
-        return 'blue';
-      case '_ComponentCComponent':
-        return 'red';
-      default:
-        return '';
+    if (!item?.component) return '#000000'; // Default color if no component
+
+    // If the component already has a color assigned, return it
+    if (this.colorMap.has(item.component)) {
+      return this.colorMap.get(item.component)!;
     }
+  
+    // Generate a new random HEX color
+    const newColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+  
+    // Store the color for this component
+    this.colorMap.set(item.component, newColor);
+  
+    return newColor;
   }
 }
