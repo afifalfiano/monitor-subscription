@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { activeSubs, DestroySubscriptionService, LoggerService } from 'monitor-subscription';
-import { interval, map, Subject, takeUntil } from 'rxjs';
+import { interval, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-component-c',
@@ -10,11 +10,10 @@ import { interval, map, Subject, takeUntil } from 'rxjs';
   styleUrl: './component-c.component.scss'
 })
 export class ComponentCComponent implements OnInit, OnDestroy {
-$data1 = new Subject();
 loggerService = inject(LoggerService);
 destroyService = inject(DestroySubscriptionService);
   ngOnInit(): void {
-    const name = this.constructor.name;
+    const name = this.constructor.name.toLowerCase();
     interval(1000).pipe(
       map(item => {
         return {
@@ -23,7 +22,7 @@ destroyService = inject(DestroySubscriptionService);
         }
       }),
       takeUntil(this.destroyService.getDestroy$(name)),
-      activeSubs(this.constructor.name, this.loggerService),
+      activeSubs(name, this.loggerService),
     ).subscribe({
       next: (data) => {
         // console.log(data, this.constructor.name);

@@ -13,7 +13,7 @@ export class ComponentBComponent implements OnInit, OnDestroy {
 destroyService = inject(DestroySubscriptionService);
 loggerService = inject(LoggerService);
   ngOnInit(): void {
-    const name = this.constructor.name;
+    const name = this.constructor.name.toLowerCase();
     interval(1000).pipe(
       map(item => {
         return {
@@ -22,7 +22,7 @@ loggerService = inject(LoggerService);
         }
       }),
       takeUntil(this.destroyService.getDestroy$(name)),
-      activeSubs(this.constructor.name, this.loggerService)
+      activeSubs(name, this.loggerService)
     ).subscribe({
       next: (data) => {
         // console.log(data, this.constructor.name);

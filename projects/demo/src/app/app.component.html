@@ -1,4 +1,5 @@
 <div style="padding: 20px">
+  <p>Menu</p>
   <ul style="line-height: 32px;padding-left: 0; list-style: none;">
     <li>
       <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>&nbsp;
@@ -7,28 +8,36 @@
       <button type="button" [routerLink]="['/component-a']" routerLinkActive="router-link-active" >
         Component A
       </button> &nbsp;
-      <button type="button" (click)="onSubscribeA()">Unsubscribe A</button>      
     </li>
     <li>
       <button type="button" [routerLink]="['/component-b']" routerLinkActive="router-link-active" >
         Component B
       </button> &nbsp;
-      <button type="button" (click)="onSubscribeB()">Unsubscribe B</button>      
     </li>
     <li>
       <button type="button" [routerLink]="['/component-c']" routerLinkActive="router-link-active" >
         Component C
       </button> &nbsp;
-      <button type="button" (click)="onSubscribeC()">Unsubscribe C</button>      
     </li>
     <li>
       <button type="button" [routerLink]="['/component-worst-case']" routerLinkActive="router-link-active" >
         Component Worst Case
       </button> &nbsp;
-      <button type="button" (click)="onSubscribeWorstCase()">Unsubscribe Worst Case</button>      
     </li>
   </ul>
-  <button type="button" (click)="onSubscribeAll()">Unsubscribe All</button>
+  <div>
+    <p>Subscription List</p>
+    <ng-container *ngFor="let sub of subsList">
+      <ng-container *ngIf="sub">
+        <button type="button" style="margin: 10px; margin-left: 0; margin-bottom: 0;" (click)="onSubscribe(sub)">Unsubscribe {{sub}}</button>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div>
+    <p>Unsubscribe All</p>
+    <button type="button" (click)="onSubscribeAll()">Unsubscribe All</button>
+  </div>
   <router-outlet />
   <app-results/>
 </div>

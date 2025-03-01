@@ -10,29 +10,33 @@ interface UnsubscribeEntry {
   providedIn: 'root'
 })
 export class DestroySubscriptionService {
-  private destroyMap = new Map<string, Subject<void>>(); // Store subjects by ID
+  private readonly destroyMap = new Map<string, Subject<void>>();
+  private readonly destroyMap$ = new Subject<Map<string, Subject<void>>>();  
 
-  // Get or create a destroy$ for a specific ID
   getDestroy$(id: string): Observable<void> {
     if (!this.destroyMap.has(id)) {
+      console.log(`Subscribing ID: ${id}`);
       this.destroyMap.set(id, new Subject<void>());
     }
+    this.destroyMap$.next(this.destroyMap);
     return this.destroyMap.get(id)!.asObservable();
   }
 
-  // ✅ Stops and removes a specific observable by ID
+  getAllDestroy$(): Observable<Map<string, Subject<void>>> {
+    return this.destroyMap$.asObservable();
+  }
+
   unsubscribe(id: string) {
     if (this.destroyMap.has(id)) {
       console.log(`Unsubscribing ID: ${id}`);
-      this.destroyMap.get(id)!.next(); // Emit complete signal
-      this.destroyMap.get(id)!.complete(); // Cleanup
-      this.destroyMap.delete(id); // Remove from map
+      this.destroyMap.get(id)!.next();
+      this.destroyMap.get(id)!.complete();
+      this.destroyMap.delete(id);
     } else {
       console.warn(`ID: ${id} not found in destroyMap`);
     }
   }
 
-  // ✅ Stops and removes all observables globally
   unsubscribeAll() {
     console.log('Global unsubscribe triggered!');
     this.destroyMap.forEach((destroy$, id) => {
@@ -40,6 +44,6 @@ export class DestroySubscriptionService {
       destroy$.next();
       destroy$.complete();
     });
-    this.destroyMap.clear(); // Clear all entries
+    this.destroyMap.clear();
   }
 }

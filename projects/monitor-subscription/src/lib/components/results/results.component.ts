@@ -11,7 +11,7 @@ import { LoggerService } from '../../services/logger.service';
 })
 export class ResultsComponent {
   streams: any[] = [];
-  colorMap = new Map<string, string>(); // Store colors for each component
+  colorMap = new Map<string, string>();
 
   constructor(
     private readonly logger: LoggerService
@@ -27,8 +27,6 @@ export class ResultsComponent {
       next: (data: any) => {
         if (data) {
           this.streams.push(data);
-          console.log(this.streams);
-          
         }
       }
     })
@@ -38,21 +36,13 @@ export class ResultsComponent {
     this.streams = [];
   }
 
-
   getColorComopnent(item: any): string {
-    if (!item?.component) return '#000000'; // Default color if no component
-
-    // If the component already has a color assigned, return it
+    if (!item?.component) return '#000000';
     if (this.colorMap.has(item.component)) {
       return this.colorMap.get(item.component)!;
     }
-  
-    // Generate a new random HEX color
     const newColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
-  
-    // Store the color for this component
-    this.colorMap.set(item.component, newColor);
-  
+    this.colorMap.set(item.component, newColor);  
     return newColor;
   }
 }

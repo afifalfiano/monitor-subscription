@@ -11,16 +11,10 @@ import { interval, map, of, Subject, takeUntil } from 'rxjs';
   styleUrl: './component-a.component.scss'
 })
 export class ComponentAComponent implements OnInit, OnDestroy {
-
-  data1$ = new Subject();
-  public staticValue = 'Hello'; // Not an Observable
-  public number$ = of(123); // Observable that completes immediately
-  public timer$ = interval(1000); // Infinite Observable
-  public manual$ = new Subject<string>(); // Manually controlled Observable
   loggerService = inject(LoggerService);
   destroyService = inject(DestroySubscriptionService);
   ngOnInit(): void {
-    const name = this.constructor.name;
+    const name = this.constructor.name.toLowerCase();
     interval(1000).pipe(
       map(item => {
         return [
@@ -33,7 +27,7 @@ export class ComponentAComponent implements OnInit, OnDestroy {
         ]
       }),
       takeUntil(this.destroyService.getDestroy$(name)),
-      activeSubs(this.constructor.name, this.loggerService)
+      activeSubs(name, this.loggerService)
     ).subscribe({
       next: (data) => {
         // console.log(data, this.constructor.name);
