@@ -1,43 +1,10 @@
-<div style="padding: 20px">
-  <p class="bg-red-100 text-3xl font-bold underline">Menu</p>
-  <ul style="line-height: 32px;padding-left: 0; list-style: none;">
-    <li>
-      <button type="button" [routerLink]="['/']" routerLinkActive="router-link-active">Component Home</button>&nbsp;
-    </li>
-    <li>
-      <button type="button" [routerLink]="['/component-a']" routerLinkActive="router-link-active" >
-        Component A
-      </button> &nbsp;
-    </li>
-    <li>
-      <button type="button" [routerLink]="['/component-b']" routerLinkActive="router-link-active" >
-        Component B
-      </button> &nbsp;
-    </li>
-    <li>
-      <button type="button" [routerLink]="['/component-c']" routerLinkActive="router-link-active" >
-        Component C
-      </button> &nbsp;
-    </li>
-    <li>
-      <button type="button" [routerLink]="['/component-worst-case']" routerLinkActive="router-link-active" >
-        Component Worst Case
-      </button> &nbsp;
-    </li>
-  </ul>
-  <div>
-    <p>Subscription List</p>
-    <ng-container *ngFor="let sub of subsList">
-      <ng-container *ngIf="sub">
-        <button type="button" style="margin: 10px; margin-left: 0; margin-bottom: 0;" (click)="onSubscribe(sub)">Unsubscribe {{sub}}</button>
-      </ng-container>
-    </ng-container>
+<app-navbar/>
+<div class="p-8">
+  <h2 class="text-xl pb-2 font-bold">Component: </h2>
+  <div class="p-4 flex mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+    <span>Component:&nbsp; </span>
+    <div class="text-white"><router-outlet /></div>
+    <span>&nbsp; is successfully loaded.</span>
   </div>
-
-  <div>
-    <p>Unsubscribe All</p>
-    <button type="button" (click)="onSubscribeAll()">Unsubscribe All</button>
-  </div>
-  <router-outlet />
   <app-results/>
 </div>
