@@ -1,3 +1,4 @@
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -23,6 +24,12 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 * Enhanced logging to provide more detailed insights on observable state transitions.
+
+## [0.0.3] - 2025-03-05
+
+### Changed
+
+* Update how to use unsubscribe
 
 ## [Upcoming]
 

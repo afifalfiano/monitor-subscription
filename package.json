@@ -1,6 +1,15 @@
 {
   "name": "monitor-workspace",
   "version": "0.0.0",
+  "author": {
+    "email": "afifalfiano2@gmail.com",
+    "name": "Afif Alfiano",
+    "url": "https://afifalfiano.my.id"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afifalfiano/monitor-subscription.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

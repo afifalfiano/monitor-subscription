@@ -1,11 +1,15 @@
 {
   "name": "monitor-subscription",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Monitoring Subscription on Angular",
   "author": {
     "email": "afifalfiano2@gmail.com",
     "name": "Afif Alfiano",
     "url": "https://afifalfiano.my.id"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afifalfiano/monitor-subscription.git"
   },
   "license": "MIT",
   "peerDependencies": {

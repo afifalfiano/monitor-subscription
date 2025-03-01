@@ -15,13 +15,13 @@ destroyService = inject(DestroySubscriptionService);
   ngOnInit(): void {
     const name = this.constructor.name.toLowerCase();
     interval(1000).pipe(
+      takeUntil(this.destroyService.getDestroy$(name)),
       map(item => {
         return {
           username: 'paijo',
           email: 'paijo@yopmail.com'
         }
       }),
-      takeUntil(this.destroyService.getDestroy$(name)),
       activeSubs(name, this.loggerService),
     ).subscribe({
       next: (data) => {

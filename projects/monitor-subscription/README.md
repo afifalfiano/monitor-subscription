@@ -1,3 +1,4 @@
+
 # Monitor Subscription for Angular
 
 ## 📌 Overview
@@ -40,7 +41,7 @@ export class AppModule {}
 ### 2️⃣ Inject tools on Subscription
 
 ```typescript
-import { Component, OnInit } from '@angular/core';
+,import { Component, OnInit } from '@angular/core';
 import { activeSubs, DestroySubscriptionService, LoggerService} from 'monitor-subscription';
 import { interval } from 'rxjs';
 
@@ -58,14 +59,14 @@ export class ExampleComponent implements OnInit {
     const myObservable = interval(1000); // Emits values every second  
     const name = this.construcor.name.toLowerCase();
     myObservable.pipe(
+     takeUntil(this.destroyService.getDestroy$(name)), // make sure takeUntil always on the first pipe
      activeSubs(name, this.loggerService))
-     takeUntil(this.destroyService.getDestroy$(name))
      ).subscribe(value => console.log('value:', value));
   }
 }
 ```
 
-### 3️⃣Monitoring Logs Observable
+### 3️⃣ Monitoring Logs Observable
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -98,6 +99,37 @@ export class AppComponent implements OnInit {
   
 }
 ```
+
+### 4️⃣ Unsubscribe Through Services
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { activeSubs, DestroySubscriptionService, LoggerService} from 'monitor-subscription';
+import { interval } from 'rxjs';
+
+@Component({
+  selector: 'test-component',
+  template: '<button type="button" (click)="doUnsubscribe()">Unsubscribe</button> <p>test component works!/p>'
+})
+export class TestComponent implements OnInit {
+  constructor(
+	private destroyService: DestroySubscriptionService
+) {}
+   
+  ngOnInit() {
+  }
+  
+  doUnsubscribe(): void {
+     const id = '_appcomponent';
+     this.destroyService.unsubscribe(id);
+  }
+  
+}
+```
+
+## 🚀 Demo Implementation
+
+Please take a look on this repository for proper implementation [monitor-subscription/projects/demo at main · afifalfiano/monitor-subscription](https://github.com/afifalfiano/monitor-subscription/tree/main/projects/demo)
 
 ## 📜 API
 

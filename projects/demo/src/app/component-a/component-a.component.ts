@@ -16,6 +16,7 @@ export class ComponentAComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const name = this.constructor.name.toLowerCase();
     interval(1000).pipe(
+      takeUntil(this.destroyService.getDestroy$(name)),
       map(item => {
         return [
           {
@@ -26,7 +27,6 @@ export class ComponentAComponent implements OnInit, OnDestroy {
           }
         ]
       }),
-      takeUntil(this.destroyService.getDestroy$(name)),
       activeSubs(name, this.loggerService)
     ).subscribe({
       next: (data) => {
