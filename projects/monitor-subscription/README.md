@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-This Angular tool provides functionality to retrieve, monitor, and subscribe to observables within an application. It helps developers track the state of observables and their emitted values in real-time.
+This Angular tool provides advanced functionality for retrieving, monitoring, and subscribing to observables within an application. It allows developers to track the state of observables in real-time, visualize emitted values, and analyze subscription behavior for better debugging and performance optimization..
 
 ## 🚀 Features
 
@@ -109,41 +109,41 @@ export class AppComponent implements OnInit {
 
 Class services that used to unsubscribe the observables
 
-#### `<span>monitor(observable: Observable<T>, name: string): void</span>`
+#### `monitor(observable: Observable<T>, name: string): void`
 
 * Registers an observable to be monitored, associating it with a unique reference name.
 * Helps in tracking the data flow and debugging reactive streams efficiently.
 
-#### `<span>getCurrentValue(name: string): Observable<T></span>`
+#### `getCurrentValue(name: string): Observable<T>`
 
 * Retrieves the latest value emitted by a monitored observable.
 * Useful for fetching real-time updates on demand.
 
-#### `<span>subscribeTo(name: string, callback: (value: T) => void): Subscription</span>`
+#### `subscribeTo(name: string, callback: (value: T) => void): Subscription`
 
 * Subscribes to a monitored observable and executes a callback function whenever new data is emitted.
 * Ensures the latest values are processed automatically.
 
-#### `<span>getDestroy$(id: string): Observable<void></span>`
+#### `getDestroy$(id: string): Observable<void>`
 
 * Provides a destroy signal observable for a specific ID.
 * If the ID does not exist, it creates a new subject.
 * Emits a completion signal when the observable needs to be unsubscribed.
 * Useful for managing component lifecycles and preventing memory leaks.
 
-#### `<span>getAllDestroy$(): Observable<Map<string, Subject<void>>></span>`
+#### `getAllDestroy$(): Observable<Map<string, Subject<void>>>`
 
 * Returns an observable containing a map of all active destroy subjects.
 * Allows tracking and handling of multiple observable lifecycles efficiently.
 
-#### `<span>unsubscribe(id: string): void</span>`
+#### `unsubscribe(id: string): void`
 
 * Unsubscribes from the observable associated with the provided ID.
 * Completes the subject and removes it from the `<span>destroyMap</span>`.
 * Logs an error message if the ID does not exist in the map.
 * Helps manage individual observable cleanup effectively.
 
-#### `<span>unsubscribeAll(): void</span>`
+#### `unsubscribeAll(): void`
 
 * Unsubscribes all observables currently stored in `<span>destroyMap</span>`.
 * Completes all subjects and clears the map to free up resources.
