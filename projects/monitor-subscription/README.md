@@ -99,8 +99,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-
-## 📜 API 
+## 📜 API
 
 ### `activeSubs(name: string, loggerService: LoggerService): Observable<T>`
 
@@ -187,7 +186,7 @@ Provide the function to store the current value in observables state.
 
 ## 📝 Showcase
 
-
+[Demo](https://youtu.be/jXKSF0-KF3I?si=JXJn8ZBAiUB4tXR9 "Monitor Subscription")
 
 ## 📝 License
 
