@@ -1,3 +1,4 @@
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -29,6 +30,12 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 * Update how to use unsubscribe
+
+## [0.0.4] - 2025-03-05
+
+### Fixed
+
+* Support angular below v16 to using module
 
 ## [Upcoming]
 

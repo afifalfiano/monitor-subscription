@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-interface UnsubscribeEntry {
-  id: string;
-  destroy$: Subject<void>;
-}
-
 @Injectable({
   providedIn: 'root'
 })

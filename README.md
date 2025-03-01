@@ -10,7 +10,7 @@ This Angular tool provides advanced functionality for retrieving, monitoring, an
 * Monitor emitted values over time.
 * Subscribe to observables and handle real-time data.
 * Improve debugging and tracking of reactive streams.
-* Unsubscribe current observable based on the services.
+* Unsubscribe current observable with the services.
 
 ## 🔄 Compatibility
 

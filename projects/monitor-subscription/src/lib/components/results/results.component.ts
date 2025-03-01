@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { CommonModule, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { LoggerService } from '../../services/logger.service';
 import { DestroySubscriptionService } from '../../services/destroy-subscription.service';
@@ -6,7 +6,7 @@ import { DestroySubscriptionService } from '../../services/destroy-subscription.
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [JsonPipe, NgFor, NgIf],
+  imports: [JsonPipe, NgFor, NgIf, CommonModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
@@ -14,7 +14,7 @@ export class ResultsComponent {
   streams: any[] = [];
   colorMap = new Map<string, string>();
   destroyList = null;
-  subsList: any = [];
+  subsList: string[] = [];
 
   constructor(
     private readonly logger: LoggerService,
