@@ -1,6 +1,13 @@
 {
   "name": "monitor-subscription",
   "version": "0.0.1",
+  "description": "Monitoring Subscription on Angular",
+  "author": {
+    "email": "afifalfiano2@gmail.com",
+    "name": "Afif Alfiano",
+    "url": "https://afifalfiano.my.id"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=12.0.0 <18.2.0",
     "@angular/core": ">=12.0.0 <18.2.0"
