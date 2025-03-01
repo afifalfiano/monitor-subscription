@@ -1,7 +1,6 @@
 module.exports = {
   content: [
-     "./src/**/*.{html,ts}",
-     "./projects/**/*.{html,ts}"
+    "./projects/**/src/**/*.{html,ts,scss}"
   ],
   plugins: [
     require('tailwindcss'),
