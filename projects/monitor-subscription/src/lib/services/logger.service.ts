@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
-  private readonly data = new BehaviorSubject(null);
+  private readonly data = new Subject<any>();
+  private logList: any[] = [];
 
   integrated(): void {
     console.log('Successfully Integrated Monitor Subscription...')
@@ -27,7 +28,17 @@ export class LoggerService {
     this.data.next(value);
   }
 
-  getStore(): Observable<any> {
-    return this.data.asObservable();
+  resetStore(): void {
+    this.logList = [];
+  }
+
+  getStore(): Observable<any[]> {
+    this.logList = [];
+    return this.data.asObservable().pipe(
+      map(values => {
+        this.logList.push(values)
+        return this.logList;
+      })
+    );
   }
 }

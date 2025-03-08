@@ -1,4 +1,3 @@
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -36,6 +35,16 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 * Support angular below v16 to using module
+
+## [0.0.5] - 2025-03-08
+
+### Changed
+
+* Build it native css for resullt component to avoid breaks UI
+
+### Added
+
+* Added store data for subslist and loglist inside of the services
 
 ## [Upcoming]
 

@@ -1,0 +1,116 @@
+:host {
+  font-family: sans-serif !important;
+  
+  button {
+    border: none;
+  }
+
+  h2 {
+    margin: 0;
+    padding-top: 12px;
+  }
+}
+
+.subscription-list-title {
+  font-size: 1.25rem;
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.flex-wrap-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unsubscribe-all-btn,
+.reset-logs-btn {
+  color: white;
+  background-color: #1d4ed8;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.unsubscribe-all-btn:hover,
+.reset-logs-btn:hover {
+  background-color: #1e40af;
+}
+
+.unsubscribe-btn {
+  color: white;
+  background-color: #b91c1c;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.unsubscribe-btn:hover {
+  background-color: #991b1b;
+}
+
+.table-container {
+  position: relative;
+  overflow-x: auto;
+  max-height: 500px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #374151;
+}
+.table {
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: left;
+  color: #6b7280;
+}
+.table-header {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  background-color: #f9fafb;
+  color: #374151;
+}
+.table-row {
+  // background-color: white;
+}
+.table-row:hover {
+  background-color: #f3f4f6;
+}
+.table-cell {
+  padding: 1rem 1.5rem;
+}
+
+.no-data-container {
+  display: flex;
+  background-color: #f9fafb;
+}
+.no-data-content {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.no-data-title {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #374151;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-xl  {
+  font-size: 1.25rem;
+}
+
+.p-8 {
+  padding: calc(var(0.25rem )* 8);
+}
+
+.py-2 {
+  padding-block: calc(var(0.25rem)* 2);
+}
