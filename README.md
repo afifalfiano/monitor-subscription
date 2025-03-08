@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
   doMonitorObservables(): void {
    this.loggerService.getStore().subscribe({
     next: data => {
-      this.logs.push(data);
+      this.logs = data;
       conosle.log(logs, 'logs');
     }
    })
@@ -132,88 +132,33 @@ Please take a look on this repository for proper implementation [monitor-subscri
 
 ## 📜 API
 
-### `activeSubs(name: string, loggerService: LoggerService): Observable<T>`
+| Method/Class                                                              | Description                                                             |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `activeSubs(name: string, loggerService: LoggerService): Observable<T>` | Starts monitoring the given observable and assigns it a reference name. |
 
-* Starts monitoring the given observable and assigns it a reference name.
-
-### `DestroySubscriptionService `
+### DestroySubscriptionService
 
 Class services that used to unsubscribe the observables
 
-#### `monitor(observable: Observable<T>, name: string): void`
+| Method/Class                                                 | Description                                                                                         |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `getDestroy$(id: string): Observable<void>`                | Provides a destroy signal observable for an ID, emits completion for unsubscription management.     |
+| `getAllDestroy$(): Observable<Map<string, Subject<void>>>` | Returns an observable map of all active destroy subjects, managing multiple lifecycles efficiently. |
+| `unsubscribe(id: string): void`                            | Unsubscribes from the observable by ID, completes the subject, and removes it from `destroyMap`.  |
+| `unsubscribeAll(): void`                                   | Unsubscribes all observables, completes subjects, clears `destroyMap`, and logs each ID.          |
 
-* Registers an observable to be monitored, associating it with a unique reference name.
-* Helps in tracking the data flow and debugging reactive streams efficiently.
-
-#### `getCurrentValue(name: string): Observable<T>`
-
-* Retrieves the latest value emitted by a monitored observable.
-* Useful for fetching real-time updates on demand.
-
-#### `subscribeTo(name: string, callback: (value: T) => void): Subscription`
-
-* Subscribes to a monitored observable and executes a callback function whenever new data is emitted.
-* Ensures the latest values are processed automatically.
-
-#### `getDestroy$(id: string): Observable<void>`
-
-* Provides a destroy signal observable for a specific ID.
-* If the ID does not exist, it creates a new subject.
-* Emits a completion signal when the observable needs to be unsubscribed.
-* Useful for managing component lifecycles and preventing memory leaks.
-
-#### `getAllDestroy$(): Observable<Map<string, Subject<void>>>`
-
-* Returns an observable containing a map of all active destroy subjects.
-* Allows tracking and handling of multiple observable lifecycles efficiently.
-
-#### `unsubscribe(id: string): void`
-
-* Unsubscribes from the observable associated with the provided ID.
-* Completes the subject and removes it from the `<span>destroyMap</span>`.
-* Logs an error message if the ID does not exist in the map.
-* Helps manage individual observable cleanup effectively.
-
-#### `unsubscribeAll(): void`
-
-* Unsubscribes all observables currently stored in `<span>destroyMap</span>`.
-* Completes all subjects and clears the map to free up resources.
-* Logs each ID being unsubscribed for better debugging and tracking.
-* Prevents potential memory leaks by ensuring no stale subscriptions remain.
-
-### `LoggerService`
+### LoggerService
 
 Provide the function to store the current value in observables state.
 
-#### `integrated(): void`
-
-* Logs a confirmation message indicating successful integration of the monitoring system.
-* Useful for debugging and ensuring the monitoring tool is initialized correctly.
-
-#### `log(message: string): void`
-
-* Logs a general message to the console prefixed with `<span>LoggerService:</span>`.
-* Helps in tracking events and debugging application state changes.
-
-#### `warn(message: string): void`
-
-* Logs a warning message to the console prefixed with `<span>LoggerService Warning:</span>`.
-* Useful for highlighting potential issues without stopping execution.
-
-#### `error(message: string): void`
-
-* Logs an error message to the console prefixed with `<span>LoggerService Error:</span>`.
-* Helps track critical failures and debugging severe issues.
-
-#### `store(value: any): void`
-
-* Stores a value in a `<span>BehaviorSubject</span>`, making it available for future retrieval.
-* Useful for persisting state changes within the application.
-
-#### `getStore(): Observable<any>`
-
-* Returns an observable of the stored value.
-* Allows components and services to react to stored data changes dynamically.
+| Method/Class                     | Description                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `integrated(): void`           | Logs a confirmation message for successful integration, aiding in debugging.                    |
+| `log(message: string): void`   | Logs a general message prefixed with `LoggerService:` for event tracking and debugging.       |
+| `warn(message: string): void`  | Logs a warning message prefixed with `LoggerService Warning:`, highlighting potential issues. |
+| `error(message: string): void` | Logs an error message prefixed with `LoggerService Error:`, for critical failure tracking.    |
+| `store(value: any): void`      | Stores a value in `BehaviorSubject`, useful for persisting state changes within the app.      |
+| `getStore(): Observable<any>`  | Returns an observable of the stored value, allowing dynamic reactions to data changes.          |
 
 ## 📝 Showcase
 

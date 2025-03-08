@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { delay, map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 export class DestroySubscriptionService {
   private readonly destroyMap = new Map<string, Subject<void>>();
   private readonly destroyMap$ = new Subject<Map<string, Subject<void>>>();  
+  private subsList: any[] = [];
 
   getDestroy$(id: string): Observable<void> {
     if (!this.destroyMap.has(id)) {
@@ -17,8 +18,15 @@ export class DestroySubscriptionService {
     return this.destroyMap.get(id)!.asObservable();
   }
 
-  getAllDestroy$(): Observable<Map<string, Subject<void>>> {
-    return this.destroyMap$.asObservable();
+  getAllDestroy$(): Observable<any[]> {
+    this.subsList = [];
+    return this.destroyMap$.asObservable().pipe(
+      delay(500),
+      map((item: any) => {
+        this.subsList = item.keys().toArray();
+        return this.subsList;
+      }),
+    );
   }
 
   unsubscribe(id: string) {
@@ -27,6 +35,7 @@ export class DestroySubscriptionService {
       this.destroyMap.get(id)!.next();
       this.destroyMap.get(id)!.complete();
       this.destroyMap.delete(id);
+      this.subsList = this.subsList.filter(item => item !== id);
     } else {
       console.warn(`ID: ${id} not found in destroyMap`);
     }
@@ -38,6 +47,7 @@ export class DestroySubscriptionService {
       console.log(`Unsubscribing ID: ${id}`);
       destroy$.next();
       destroy$.complete();
+      this.subsList = this.subsList.filter(item => item !== id);
     });
     this.destroyMap.clear();
   }
